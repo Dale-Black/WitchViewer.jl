@@ -2,17 +2,17 @@
 <html>
    <script>var Module;</script>
    <script src="js/mdpad.js" ></script>
-   <script src="image/image.wasm.js"></script>
+   <script src="counter/counter.wasm.js"></script>
    <script>
       mdpad = {index: 1}
       setTimeout(function() {
-          x = document.getElementById("myOshi")
+          x = document.getElementById("counter")
           if (x.innerHTML === "") {
               x.innerHTML = "<bold>Unsupported browser.</bold> Chrome v119 or Firefox v120 or better should work."
           }
         }, 500)
       async function mdpad_init() {
-          const fetchPromise = fetch('image/image.wasm');
+          const fetchPromise = fetch('counter/counter.wasm');
           const { instance } = await WebAssembly.instantiateStreaming(fetchPromise, jsexports);
           wasm = instance.exports;
       }
@@ -23,7 +23,7 @@
    <body>
       <!DOCTYPE html>
       <h1 id="WitchViewer.jl">
-        WitchViewer.jl
+        Counter App
       </h1>
       <div>
       <div class=" columns is-vcentered">
@@ -36,7 +36,6 @@
             </form>
          </div>
       </div>
-      <button onclick="wasm.random_select()">Random</button>
-      <div id="myOshi"></div>
+      <div id="counter"></div>
    </body>
 </html>
